@@ -1,0 +1,9 @@
+{
+  "name": "tank-game",
+  "version": "0.0.0",
+  "description": "TankGame",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  }
+}
