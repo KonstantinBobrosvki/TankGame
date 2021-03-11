@@ -31,6 +31,9 @@
     <Content Include="controllers\indexController.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\JS\Game.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -44,6 +47,7 @@
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="public\" />
+    <Folder Include="public\JS\" />
     <Folder Include="views\" />
     <Folder Include="views\layouts\" />
     <Folder Include="views\partials\" />
