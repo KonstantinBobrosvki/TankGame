@@ -9,11 +9,14 @@ class Game extends Phaser.Scene {
 
     create() {
 
-        this.player = new Tank(this, 100, 350, 5,4,'C');
+        this.player = new Tank(this, 100, 350, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8),'C');
         this.createInput();
     }
 
     createInput() {
+
+       
+
         this.cursors = this.input.keyboard.createCursorKeys();
 
         this.counterclockwise = this.input.keyboard.addKey(
@@ -52,7 +55,12 @@ class Game extends Phaser.Scene {
         else if (this.backward.isDown || this.cursors.down.isDown) {
             this.player.goBackward();
         }
+        var gun = this.player.GetGunBody();
 
+        var input = this.input;
+        let angle = Phaser.Math.Angle.Between(gun.x, gun.y, input.x, input.y);
+
+        this.player.rotateGun(angle);
         
     }
 

@@ -31,6 +31,14 @@ class Tank {
         this.Gun.rotateCounterclockwise();
     }
 
+    rotateGun(delta) {
+        this.Gun.rotate(delta);
+    }
+
+    GetGunBody() {
+        return this.Gun.GetBody();
+    }
+
     goForward() {
         this.Hull.goForward();
        // this.Gun.moveForward(this.Hull.GetSpeed());
