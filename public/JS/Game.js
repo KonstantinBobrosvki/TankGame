@@ -9,7 +9,7 @@ class Game extends Phaser.Scene {
 
     create() {
 
-        this.player = new Tank(this, 100, 350);
+        this.player = new Tank(this, 100, 350, 5,4,'C');
         this.createInput();
     }
 
@@ -41,10 +41,10 @@ class Game extends Phaser.Scene {
      
 
         if (this.clockwise.isDown || this.cursors.right.isDown) {
-            this.player.rotateClockwise();
+            this.player.rotateClockwiseHull();
         }
         else if (this.counterclockwise.isDown || this.cursors.left.isDown) {
-            this.player.rotateCounterclockwise();
+            this.player.rotateCounterclockwiseHull();
         }
         if (this.forward.isDown || this.cursors.up.isDown) {
             this.player.goForward();

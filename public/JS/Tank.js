@@ -1,43 +1,46 @@
-class Tank {
-    constructor(scene, x, y) {
-        this.ANGLE_DELTA = 0.01;
+import { Hull } from './Hull.js';
+import { Gun } from './Gun.js';
 
-        this.SPEED = 0.05;
+class Tank {
+    //hulltype is number from 0 to 8 which shows which hull must be used
+    //guntype is number from 0 to 8 which shows which gun must be used
+    //color is char A/B/C/D
+    constructor(scene, x, y, hulltype, guntype, color) {
+
+        this.Hull = new Hull(scene, x, y, hulltype,color)
+        this.Gun = new Gun(scene, x, y, guntype, color)
 
         this.scene = scene;
 
-        const kind = 'hull';
-        this.body = this.scene.matter.add.image(x, y, kind);
-        
-        this.body.setFrictionAir(0.15)
-            .setMass(30)
-            .setScale(0.9)
-            .setFixedRotation()
-            .setAngularVelocity(0)
-            .setVelocity(0, 0);
-
-        
+      this.body=this.scene.matter.add.constraint(this.Hull.GetBody(), this.Gun.GetBody());
     }
 
-    rotate(delta) {
-        this.body.setAngularVelocity(delta);
+    rotateHull(delta) {
+        this.Hull.rotate(delta);
+        this.Gun.rotate(delta);
     }
 
-    rotateClockwise() {
-        this.rotate(this.ANGLE_DELTA);
+    rotateClockwiseHull() {
+        this.Hull.rotateClockwise();
+        this.Gun.rotateClockwise();
+
     }
 
-    rotateCounterclockwise() {
-        this.rotate(-this.ANGLE_DELTA);
+    rotateCounterclockwiseHull() {
+        this.Hull.rotateCounterclockwise();
+        this.Gun.rotateCounterclockwise();
     }
 
     goForward() {
-        this.body.thrustLeft(this.SPEED);
+        this.Hull.goForward();
+       // this.Gun.moveForward(this.Hull.GetSpeed());
     }
 
     goBackward() {
-        this.body.thrustLeft(-this.SPEED);
+        this.Hull.goBackward();
+        //this.Gun.moveBackward(this.Hull.GetSpeed())
     }
+
 };
 
 export { Tank }

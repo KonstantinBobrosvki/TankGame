@@ -40,6 +40,12 @@
     <Content Include="public\JS\Game.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\JS\Gun.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\JS\Hull.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\JS\index.js">
       <SubType>Code</SubType>
     </Content>
