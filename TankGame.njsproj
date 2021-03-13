@@ -31,7 +31,22 @@
     <Content Include="controllers\indexController.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\JS\Bullet.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\JS\Creater.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\JS\Game.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\JS\index.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\JS\Loader.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\JS\Tank.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="server.js" />
