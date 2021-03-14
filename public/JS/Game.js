@@ -3,13 +3,13 @@ import { Tank } from './Tank.js';
 class Game extends Phaser.Scene {
     constructor() {
         super({ key: 'Game' });
-        console.log('Game constr')
-
+       
     }
 
     create() {
 
-        this.player = new Tank(this, 100, 350, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8),'C');
+        this.player = new Tank(this, 400, 500, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
+        this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
         this.createInput();
     }
 
@@ -61,7 +61,9 @@ class Game extends Phaser.Scene {
         let angle = Phaser.Math.Angle.Between(gun.x, gun.y, input.x, input.y);
 
         this.player.rotateGun(angle);
-        
+
+       // this.cameras.main.startFollow(this.player.GetHullBody());
+
     }
 
 
