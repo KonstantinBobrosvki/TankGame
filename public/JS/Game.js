@@ -7,6 +7,21 @@ class Game extends Phaser.Scene {
     }
 
     create() {
+        for (var i = 1; i < 5; i++) {
+            this.anims.create({
+                key: 'trackGo_'+i,
+                frames: [
+                    { key: 'Track_'+i+'_A' },
+                    { key: 'Track_' + i + '_B' },
+                ],
+                frameRate: 4,
+                repeat: 1
+                
+            });
+        }
+
+        
+
 
         this.player = new Tank(this, 400, 500, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
         this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
@@ -55,12 +70,12 @@ class Game extends Phaser.Scene {
         else if (this.backward.isDown || this.cursors.down.isDown) {
             this.player.goBackward();
         }
-        var gun = this.player.GetGunBody();
+       // var gun = this.player.GetGunBody();
 
-        var input = this.input;
-        let angle = Phaser.Math.Angle.Between(gun.x, gun.y, input.x, input.y);
+        //var input = this.input;
+        //let angle = Phaser.Math.Angle.Between(gun.x, gun.y, input.x, input.y);
 
-        this.player.rotateGun(angle);
+       // this.player.rotateGun(angle);
 
        // this.cameras.main.startFollow(this.player.GetHullBody());
 

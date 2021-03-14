@@ -12,23 +12,23 @@ class Tank {
 
         this.scene = scene;
 
-      this.body=this.scene.matter.add.constraint(this.Hull.GetBody(), this.Gun.GetBody());
+      //this.body=this.scene.matter.add.constraint(this.Hull.GetBody(), this.Gun.GetBody());
     }
 
     rotateHull(delta) {
         this.Hull.rotate(delta);
-        this.Gun.rotate(delta);
+       // this.Gun.rotate(delta);
     }
 
     rotateClockwiseHull() {
         this.Hull.rotateClockwise();
-        this.Gun.rotateClockwise();
+        //this.Gun.rotateClockwise();
 
     }
 
     rotateCounterclockwiseHull() {
         this.Hull.rotateCounterclockwise();
-        this.Gun.rotateCounterclockwise();
+      //  this.Gun.rotateCounterclockwise();
     }
 
     rotateGun(delta) {
