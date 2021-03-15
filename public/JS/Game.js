@@ -70,12 +70,12 @@ class Game extends Phaser.Scene {
         else if (this.backward.isDown || this.cursors.down.isDown) {
             this.player.goBackward();
         }
-       // var gun = this.player.GetGunBody();
+        var gun = this.player.GetGunBody();
+        var hull = this.player.GetContainer();
+        var input = this.input;
+        let angle = Phaser.Math.Angle.Between(gun.x + hull.x, gun.y+hull.y, input.x, input.y);
 
-        //var input = this.input;
-        //let angle = Phaser.Math.Angle.Between(gun.x, gun.y, input.x, input.y);
-
-       // this.player.rotateGun(angle);
+       this.player.rotateGun(angle + Math.PI / 2);
 
        // this.cameras.main.startFollow(this.player.GetHullBody());
 

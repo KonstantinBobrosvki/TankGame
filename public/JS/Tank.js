@@ -8,7 +8,7 @@ class Tank {
     constructor(scene, x, y, hulltype, guntype, color) {
 
         this.Hull = new Hull(scene, x, y, hulltype,color)
-        this.Gun = new Gun(scene, x, y, guntype, color)
+        this.Gun = new Gun(scene, x, y, guntype, color, this.Hull.GetContainer())
 
         this.scene = scene;
 
@@ -17,26 +17,31 @@ class Tank {
 
     rotateHull(delta) {
         this.Hull.rotate(delta);
-       // this.Gun.rotate(delta);
+        //this.Gun.rotate(delta);
     }
 
     rotateClockwiseHull() {
         this.Hull.rotateClockwise();
-        //this.Gun.rotateClockwise();
+       this.Gun.rotate(this.Hull.GetContainer().rotation);
 
     }
 
     rotateCounterclockwiseHull() {
         this.Hull.rotateCounterclockwise();
-      //  this.Gun.rotateCounterclockwise();
+        this.Gun.rotate(this.Hull.GetContainer().rotation);
     }
 
     rotateGun(delta) {
-        this.Gun.rotate(delta);
+        
+        this.Gun.rotate(delta - this.Hull.GetContainer().rotation);
     }
 
     GetGunBody() {
         return this.Gun.GetBody();
+    }
+
+    GetContainer() {
+        return this.Hull.GetContainer();
     }
 
     goForward() {

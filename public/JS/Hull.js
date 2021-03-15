@@ -14,7 +14,7 @@ class Hull {
 
        
 
-        let container = this.scene.add.container(x, y);
+        this.container = this.scene.add.container(x, y);
         this.body = this.scene.matter.add.image(0, 0, kind).setStatic(true);
 
         var track_X = 0 - this.body.width/2;
@@ -24,11 +24,11 @@ class Hull {
         this.track2.setCollisionCategory(null);
         
 
-        container.add(this.body);
-        container.add(this.track1);
-        container.add(this.track2);
-        container.bringToTop(this.body)
-        this.matterEnabledContainer = scene.matter.add.gameObject( container);
+        this.container.add(this.body);
+        this.container.add(this.track1);
+        this.container.add(this.track2);
+        this.container.bringToTop(this.body)
+        this.matterEnabledContainer = scene.matter.add.gameObject(this.container);
         var matterBody = this.scene.matter.bodies.rectangle(x,y,this.body.width,this.body.height) // setup matter.js-body
         this.matterEnabledContainer.setExistingBody(matterBody);
 
@@ -74,8 +74,8 @@ class Hull {
         return this.SPEED;
     }
 
-    GetBody() {
-        return this.body;
+    GetContainer() {
+        return this.matterEnabledContainer;
     }
 
 };
