@@ -54,6 +54,11 @@ class Tank {
         //this.Gun.moveBackward(this.Hull.GetSpeed())
     }
 
+    Shoot() {
+        var hull = this.GetContainer();
+        this.Gun.Shoot(hull);
+    }
+
 };
 
 export { Tank }

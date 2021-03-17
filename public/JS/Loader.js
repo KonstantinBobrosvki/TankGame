@@ -14,10 +14,10 @@ class Loader extends Phaser.Scene {
         }
         //Load all guns
         for (var i = 1; i < 9; i++) {
-            this.load.image('A_Gun_0' + i, 'assets/Tanks/Weapon_Color_A_256X256/Gun_0' + i + '.png');
-            this.load.image('B_Gun_0' + i, 'assets/Tanks/Weapon_Color_B_256X256/Gun_0' + i + '.png');
-            this.load.image('C_Gun_0' + i, 'assets/Tanks/Weapon_Color_C_256X256/Gun_0' + i + '.png');
-            this.load.image('D_Gun_0' + i, 'assets/Tanks/Weapon_Color_D_256X256/Gun_0' + i + '.png');
+            this.load.image('A_Gun_0' + i, 'assets/Tanks/Weapon_Color_A/Gun_0' + i + '.png');
+            this.load.image('B_Gun_0' + i, 'assets/Tanks/Weapon_Color_B/Gun_0' + i + '.png');
+            this.load.image('C_Gun_0' + i, 'assets/Tanks/Weapon_Color_C/Gun_0' + i + '.png');
+            this.load.image('D_Gun_0' + i, 'assets/Tanks/Weapon_Color_D/Gun_0' + i + '.png');
         }
 
         //Load all tracks
@@ -28,10 +28,7 @@ class Loader extends Phaser.Scene {
         }
 
         // this.load.image('bullet', 'assets/Tanks/Effects/Sprites/Sprite_Effects_Exhaust_01_000.png');
-        this.load.spritesheet('bullet',
-            'assets/Tanks/Effects/Sprites/Sprite_Effects_Exhaust_01_000.png',
-            { frameWidth: 32, frameHeight: 48 }
-        );
+        this.load.image('bullet','assets/Tanks/Effects/Sprites/Sprite_Effects_Exhaust_01_006.png');
         this.load.image('background', 'assets/Titles/Tiles/Ground_Tile_01_A.png');
     }
 

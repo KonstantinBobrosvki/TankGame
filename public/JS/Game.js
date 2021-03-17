@@ -22,7 +22,7 @@ class Game extends Phaser.Scene {
 
         
 
-
+       
         this.player = new Tank(this, 400, 500, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
         this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
         this.createInput();
@@ -53,6 +53,8 @@ class Game extends Phaser.Scene {
         ].forEach(key => {
             key.reset();
         });
+
+        this.mouse = this.input.mousePointer;
     }
 
     update() {
@@ -75,7 +77,11 @@ class Game extends Phaser.Scene {
         var input = this.input;
         let angle = Phaser.Math.Angle.Between(gun.x + hull.x, gun.y+hull.y, input.x, input.y);
 
-       this.player.rotateGun(angle + Math.PI / 2);
+        this.player.rotateGun(angle + Math.PI / 2);
+
+        if (this.mouse.isDown) {
+            this.player.Shoot();
+        }
 
        // this.cameras.main.startFollow(this.player.GetHullBody());
 

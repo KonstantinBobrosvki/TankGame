@@ -54,6 +54,47 @@ class Gun {
         return this.body;
     }
 
+
+    Shoot(hull) {
+        const bullet_speed = 0.1;
+
+        if (!this.shooted) {
+
+           var x = hull.x;
+           var y = hull.y;
+
+            this.shooted = true;
+            //console.log(this.body.angle )
+            x = x - this.body.x;
+            y = y + this.body.y;
+            var bullet = this.scene.matter.add.image(x, y, 'bullet')
+            var angle = this.body.angle+hull.angle;
+
+
+            var cos = Math.cos(angle);
+            var sin = Math.sin(angle);
+            //console.log([cos,sin])
+            
+            var x_n = x * cos + y * sin;
+            var y_n = (-1) * x * sin + y * cos;
+            x_n = Math.max(x_n, -x_n);
+            y_n = Math.max(y_n, -y_n);
+
+            //console.log([x_n, y_n ])
+
+            var matterBody = this.scene.matter.bodies.rectangle(x, y, 40, 40)
+            bullet.setExistingBody(matterBody)
+            bullet.setCollisionCategory('otherTank');
+            
+
+            bullet.setAngle(angle);
+            bullet.thrustLeft(bullet_speed);
+
+            setTimeout(() => { this.shooted = false },1000)
+        }
+
+    }
+
    
 };
 
