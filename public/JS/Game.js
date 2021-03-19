@@ -36,7 +36,7 @@ class Game extends Phaser.Scene {
         }
         this.input.setPollAlways(true);
        
-        this.player = new Tank(this, 400, 500, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
+        this.player = new Tank(this, Phaser.Math.Between(400, 2600), Phaser.Math.Between(500, 1500), Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
         //this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
         this.createInput();
 

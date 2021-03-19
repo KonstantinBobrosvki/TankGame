@@ -90,7 +90,10 @@ class Gun {
             bullet.setAngle(angle);
             bullet.thrustLeft(bullet_speed);
 
-            setTimeout(() => { this.shooted = false },1000)
+            setTimeout(() => { this.shooted = false }, 1000)
+            setTimeout(() => {
+                bullet.destroy();
+            }, 2000)    
         }
 
     }
