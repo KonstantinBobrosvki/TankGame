@@ -17,18 +17,18 @@ class Tank {
 
     rotateHull(delta) {
         this.Hull.rotate(delta);
-        //this.Gun.rotate(delta);
+        
     }
 
     rotateClockwiseHull() {
         this.Hull.rotateClockwise();
-       this.Gun.rotate(this.Hull.GetContainer().rotation);
+     
 
     }
 
     rotateCounterclockwiseHull() {
         this.Hull.rotateCounterclockwise();
-        this.Gun.rotate(this.Hull.GetContainer().rotation);
+       
     }
 
     rotateGun(delta) {

@@ -1,12 +1,17 @@
 import { Tank } from './Tank.js';
 
 class Game extends Phaser.Scene {
+    
+
     constructor() {
         super({ key: 'Game' });
        
     }
 
     create() {
+        const world_width = 3000;
+        const world_height = 2000;
+
         for (var i = 1; i < 5; i++) {
             this.anims.create({
                 key: 'trackGo_'+i,
@@ -19,13 +24,23 @@ class Game extends Phaser.Scene {
                 
             });
         }
+       
 
-        
+        this.matter.world.setBounds(0, 0, world_width, world_height)
+        for (var i = 128; i <= world_width; i = i + 256) {
+            for (var ii = 128; ii < world_height; ii=ii+256) {
+                this.add.tileSprite(i, ii, 256, 256, 'background')
 
+            }
+
+        }
+        this.input.setPollAlways(true);
        
         this.player = new Tank(this, 400, 500, Phaser.Math.Between(1, 8), Phaser.Math.Between(1, 8), ['A', 'B', 'C', 'D'][Phaser.Math.Between(0, 3)]);
-        this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
+        //this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor("#0000FF");
         this.createInput();
+
+        this.cameras.main.startFollow(this.player.GetContainer());
     }
 
     createInput() {
@@ -58,7 +73,7 @@ class Game extends Phaser.Scene {
     }
 
     update() {
-     
+        this.input.activePointer.updateWorldPoint(this.cameras.main);
 
         if (this.clockwise.isDown || this.cursors.right.isDown) {
             this.player.rotateClockwiseHull();
@@ -72,10 +87,19 @@ class Game extends Phaser.Scene {
         else if (this.backward.isDown || this.cursors.down.isDown) {
             this.player.goBackward();
         }
+
         var gun = this.player.GetGunBody();
         var hull = this.player.GetContainer();
-        var input = this.input;
-        let angle = Phaser.Math.Angle.Between(gun.x + hull.x, gun.y+hull.y, input.x, input.y);
+        
+
+        const crosshairX = this.input.activePointer.worldX
+        const crosshairY = this.input.activePointer.worldY
+
+       
+
+        
+
+        let angle = Phaser.Math.Angle.Between(gun.x + hull.x, gun.y + hull.y, crosshairX, crosshairY);
 
         this.player.rotateGun(angle + Math.PI / 2);
 
@@ -83,7 +107,7 @@ class Game extends Phaser.Scene {
             this.player.Shoot();
         }
 
-       // this.cameras.main.startFollow(this.player.GetHullBody());
+        
 
     }
 
