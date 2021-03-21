@@ -26,13 +26,13 @@ class Gun {
         this.body.setOrigin(0.5, 0.7);
        
         container.add(this.body)
-        console.log(container.getIndex(this.body))
+        
         var t = container.getAt(container.getIndex(this.body))
         t.x = 0;
         t.y = 30;
         this.scene.matter.world.remove(this.body)
 
-       
+        
     }
 
     rotate(delta) {
@@ -71,24 +71,30 @@ class Gun {
             var angle = this.body.angle+hull.angle;
 
 
-            var cos = Math.cos(angle);
-            var sin = Math.sin(angle);
-            //console.log([cos,sin])
             
-            var x_n = x * cos + y * sin;
-            var y_n = (-1) * x * sin + y * cos;
-            x_n = Math.max(x_n, -x_n);
-            y_n = Math.max(y_n, -y_n);
+            
+            var x_n = x + 130 * Math.cos((angle - 90) * Math.PI / 180);
+            var y_n = y + 130* Math.sin((angle-90) * Math.PI / 180);
+           
 
             //console.log([x_n, y_n ])
 
-            var matterBody = this.scene.matter.bodies.rectangle(x, y, 40, 40)
+            var matterBody = this.scene.matter.bodies.rectangle(x_n, y_n, 40, 40)
             bullet.setExistingBody(matterBody)
-            bullet.setCollisionCategory('otherTank');
-            
+
+            bullet.setCollisionCategory(4);//4 is bullet
+            bullet.setCollidesWith(2);//2 is tank
 
             bullet.setAngle(angle);
             bullet.thrustLeft(bullet_speed);
+
+            bullet.setOnCollide(pair => {
+                
+                if (pair.bodyA.collision == pair.bodyB.collision) {
+
+                }
+                
+            }); 
 
             setTimeout(() => { this.shooted = false }, 1000)
             setTimeout(() => {

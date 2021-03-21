@@ -43,7 +43,10 @@ class Hull {
         this.scene.matter.world.remove(this.track1);
         this.scene.matter.world.remove(this.track2);
 
-
+        
+        this.matterEnabledContainer.setCollisionCategory(2);
+        console.log(this.scene.matter.world.walls)
+        this.matterEnabledContainer.setCollidesWith(4 | 1  |2);
     }
 
     rotate(delta) {
