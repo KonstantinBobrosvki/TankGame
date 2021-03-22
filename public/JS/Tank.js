@@ -6,14 +6,34 @@ class Tank {
     //guntype is number from 0 to 8 which shows which gun must be used
     //color is char A/B/C/D
     //isPlayer bool
-    constructor(scene, x, y, hulltype, guntype, color) {
+    constructor(scene, x, y, hulltype, guntype, color, isPlayer) {
 
-        this.Hull = new Hull(scene, x, y, hulltype, color)
-        this.Gun = new Gun(scene, x, y, guntype, color, this.Hull.GetContainer())
+        this.isPlayer = isPlayer;
 
         this.scene = scene;
+        var container = this.CreateMatterContainer(x,y)
+        this.Hull = new Hull(container , hulltype, color)
+        this.Gun = new Gun(container, guntype, color)
 
-      //this.body=this.scene.matter.add.constraint(this.Hull.GetBody(), this.Gun.GetBody());
+        container.setCollisionCategory(this.isPlayer ? 2 : 8);
+
+        container.setCollidesWith(4 | 1 | 2 | 8);
+
+        console.log(container);
+    }
+
+    CreateMatterContainer(x, y) {
+
+
+        var container = this.scene.add.container(x, y);
+
+        this.matterEnabledContainer = this.scene.matter.add.gameObject(container);
+
+        this.matterEnabledContainer.setCollisionCategory(this.isPlayer? 2 : 8);
+
+        this.matterEnabledContainer.setCollidesWith(4 | 1 | 2 | 8);
+
+        return container;
     }
 
     rotateHull(delta) {
